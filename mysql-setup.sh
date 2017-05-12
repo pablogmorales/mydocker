@@ -4,7 +4,7 @@
 #####################################
 
 function configure_database() {
-# Give me moment...
+# Give me a moment before I begin....
 sleep 30
 
 echo "START CONFIGURATION PROCESS" >>/supervisord.log
