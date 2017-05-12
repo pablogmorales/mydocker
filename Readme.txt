@@ -5,11 +5,11 @@
 # for root user and mysql admin user.
 
 
-1 - Make sure you have docker-io installed, if you are using ubuntu 16.04 add the follwing
+1 - Make sure you have docker-ce installed, if you are using ubuntu 16.04 add the following
     line to /etc/apt/sources.list 
     deb [arch=amd64] https://download.docker.com/linux/ubuntu xenial stable
 
-    Then update the repo:
+    Then update the repos:
     apt-get update 
     
     Install Docker-CE Community Edition
@@ -22,7 +22,7 @@
     mkdir /tmp/dockertest
     cd /tmp/dockertest
 
-    Clone my repo to get the required files
+    Clone my repo to get the required files:
     git clone https://github.com/pablogmorales/mydocker.git
 
 3 - Create the container, this will download an ubuntu image 16.04 - Xenial
@@ -35,7 +35,9 @@
 	REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
 	pabloupworktest     latest              6e5805b8e5e0        50 seconds ago      796 MB
 
-5 - Execute the container as follow, this will expose the port 8080 from the container to your localhost on 8080:
+5 - Execute the container as follow, this will expose the port 8080 from the container to your localhost on 8080,
+    if you have it already in use choose another one, for example 8088.
+
     docker run -d  -p 127.0.0.1:8080:8080 pabloupworktest:latest
     You should see the container is running with the following command:
 
@@ -45,7 +47,7 @@
     
 
 6 - To see the data use your favourite browser and point it to:
-    http://localhost:8080/index.php
+    http://localhost:8080/index.php 
    
 
 7 - To get rid of the container and image do the following:
