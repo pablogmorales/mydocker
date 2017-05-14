@@ -13,7 +13,10 @@
     apt-get update 
     
     Install Docker-CE Community Edition
-    apt-get install docker-ce
+    apt-get install -y docker-ce apt-transport-https ca-certificates curl software-properties-common
+
+    Add the keys:
+    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 
 2 - Install git if it's no intalled yet 
     apt-get install -y git
