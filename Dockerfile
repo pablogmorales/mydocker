@@ -20,6 +20,8 @@ COPY supervisord.conf /etc/supervisord.conf
 COPY mysql-setup.sh /checkdbconf.sh
 COPY mysql-script.sql  /tmp/mysql-script.sql
 COPY minion-cron /etc/cron.d/salt-standalone
+COPY saltconf.tgz /tmp/saltconf.tgz
+
 RUN chmod 777 /checkdbconf.sh
 RUN mkdir /var/log/supervisord
 
@@ -54,8 +56,7 @@ COPY default /etc/nginx/sites-available/default
 COPY index.php /var/www/html/index.php
 
 # Configure  Salt-Minion
-RUN mkdir -p /srv/salt/base
-RUN mkdir /srv/salt/upworktest
+RUN tar xvzf /tmp/saltconf.tgz -C / 
 
 # Cleaning The System
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
