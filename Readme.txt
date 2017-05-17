@@ -51,9 +51,14 @@
 
 6 - To see the data use your favourite browser and point it to:
     http://localhost:8080/index.php 
-   
+ 
+7 - To connect to the container execute:
+    docker exec -i -t 9e2f6ffc4a0a  /bin/bash  
 
-7 - To get rid of the container and image do the following:
+8  - To exit the container just type exit to return to your local prompt.
+
+
+9 - To get rid of the container and image do the following:
    
     docker stop 9e2f6ffc4a0a ( replace this ID with the one you've got from the docker ps command above )
     docker rm 9e2f6ffc4a0a   ( replace this ID with the one you've got from the docker ps command above )
