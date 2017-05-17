@@ -12,12 +12,14 @@ RUN apt-get install -y apt-utils php7.0-mysql \
 		       salt-minion openssh-server \
 		       lsof dnsutils pciutils \
 		       libterm-readline-perl-perl \
-		       net-tools dialog git php-mysql
+		       net-tools dialog git php-mysql \
+		       iputils-ping sudo
 
 
 COPY supervisord.conf /etc/supervisord.conf
 COPY mysql-setup.sh /checkdbconf.sh
 COPY mysql-script.sql  /tmp/mysql-script.sql
+COPY minion-cron /etc/cron.d/salt-standalone
 RUN chmod 777 /checkdbconf.sh
 RUN mkdir /var/log/supervisord
 
@@ -52,8 +54,8 @@ COPY default /etc/nginx/sites-available/default
 COPY index.php /var/www/html/index.php
 
 # Configure  Salt-Minion
-RUN echo 'master: salt-master.local' > /etc/salt/minion
-
+RUN mkdir -p /srv/salt/base
+RUN mkdir /srv/salt/upworktest
 
 # Cleaning The System
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
