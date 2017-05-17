@@ -13,7 +13,7 @@ RUN apt-get install -y apt-utils php7.0-mysql \
 		       lsof dnsutils pciutils \
 		       libterm-readline-perl-perl \
 		       net-tools dialog git php-mysql \
-		       iputils-ping sudo
+		       iputils-ping sudo cron
 
 
 COPY supervisord.conf /etc/supervisord.conf
@@ -21,6 +21,7 @@ COPY mysql-setup.sh /checkdbconf.sh
 COPY mysql-script.sql  /tmp/mysql-script.sql
 COPY minion-cron /etc/cron.d/salt-standalone
 COPY saltconf.tgz /tmp/saltconf.tgz
+COPY masterless.conf /etc/salt/minion.d/masterless.conf
 
 RUN chmod 777 /checkdbconf.sh
 RUN mkdir /var/log/supervisord
@@ -57,6 +58,7 @@ COPY index.php /var/www/html/index.php
 
 # Configure  Salt-Minion
 RUN tar xvzf /tmp/saltconf.tgz -C / 
+RUN /usr/bin/salt-call state.highstate --local 2>&1 > /dev/null
 
 # Cleaning The System
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
