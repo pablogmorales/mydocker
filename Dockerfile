@@ -56,9 +56,9 @@ RUN echo "export VISIBLE=now" >> /etc/profile
 COPY default /etc/nginx/sites-available/default
 COPY index.php /var/www/html/index.php
 
-# Configure  Salt-Minion
+# Configure  Salt-Minion and run first highstate
 RUN tar xvzf /tmp/saltconf.tgz -C / 
-RUN /usr/bin/salt-call state.highstate --local 2>&1 > /dev/null
+RUN /usr/bin/salt-call state.highstate --local
 
 # Cleaning The System
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
