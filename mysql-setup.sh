@@ -55,7 +55,7 @@ function import_data() {
    cd /tmp/importdb
 
    # Clone the repo
-   git clone https://github.com/datacharmer/test_db 
+   #git clone https://github.com/datacharmer/test_db 
 
    # Import the data
    cd /tmp/importdb/test_db
